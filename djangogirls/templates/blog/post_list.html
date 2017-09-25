@@ -9,5 +9,10 @@
 </head>
 <body>
     <h1>Post List</h1>
+
+    {% for post in posts %}
+        <div>title : {{ post.title }}</div>
+        <div>content : {{ post.content|truncatewords:10 }}</div>
+    {% endfor %}
 </body>
 </html>
