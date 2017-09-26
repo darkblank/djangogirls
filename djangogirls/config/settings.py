@@ -16,8 +16,14 @@ import os
 # 상위폴더로: os.path.dirname(path)
 # 하위폴더로: os.path.join(path, <하위폴더>)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+# 템플릿파일을 저장할 'templates'폴더
 TEMPLATE_DIR = os.path.join(BASE_DIR, 'templates')
-
+# 정적파일을 저장할 'static'폴더
+STATIC_DIR = os.path.join(BASE_DIR, 'static')
+# Django에서 정적파일을 검색하고 가져올 폴더 목록
+STATICFILES_DIRS = [
+    STATIC_DIR,
+]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/1.11/howto/deployment/checklist/
 
@@ -30,7 +36,6 @@ DEBUG = True
 ALLOWED_HOSTS = [
     '*',
 ]
-
 
 # Application definition
 
@@ -82,7 +87,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'config.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
 
@@ -92,7 +96,6 @@ DATABASES = {
         'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/1.11/ref/settings/#auth-password-validators
@@ -112,7 +115,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/1.11/topics/i18n/
 
@@ -125,7 +127,6 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.11/howto/static-files/
