@@ -30,15 +30,20 @@ def post_detail(request, pk):
 
 def post_add(request):
     # 강사님 git 코멘트 확인
-    if request.method == 'POST':
+    # 아래의 get은 dictionary 메서드
+    if request.method == 'POST' and request.POST.get('title') and request.POST.get('content'):
+        title = request.POST['title']
+        content = request.POST['content']
+        author = User.objects.get(username='darkblank')
+
         post = Post(
-            title=request.POST['title'],
-            content=request.POST['content'],
-            author=User.objects.get(username='darkblank')
+            title=title,
+            content=content,
+            author=author,
         )
         post.publish()
         return HttpResponse(f'{post.title}, {post.content}')
-    elif request.method == 'GET':
+    else:
         context = {
 
         }
