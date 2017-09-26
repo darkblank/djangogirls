@@ -21,5 +21,7 @@ from blog.views import post_list, post_detail
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', post_list),
-    url(r'^post/detail/$', post_detail)
+    # 숫자 1개 이상을 검색하게 하는 정규표현식
+    # 정규표현식 그룹화해서 이름을 주게 되면 뒤의 함수에 인자로 그룹의 이름을 전달한다
+    url(r'^post/(?P<pk>\d+)/', post_detail)
 ]
