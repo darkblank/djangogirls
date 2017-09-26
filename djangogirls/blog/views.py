@@ -1,7 +1,9 @@
+from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import render
 
-# Create your views here.
+User = get_user_model()
+
 from blog.models import Post
 
 
@@ -27,8 +29,15 @@ def post_detail(request, pk):
 
 
 def post_add(request):
+    # 강사님 git 코멘트 확인
     if request.method == 'POST':
-        return HttpResponse('POST request')
+        post = Post(
+            title=request.POST['title'],
+            content=request.POST['content'],
+            author=User.objects.get(username='darkblank')
+        )
+        post.publish()
+        return HttpResponse(f'{post.title}, {post.content}')
     elif request.method == 'GET':
         context = {
 
