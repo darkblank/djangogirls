@@ -24,3 +24,13 @@ def post_detail(request, pk):
         'post': post,
     }
     return render(request, 'blog/post_detail.html', context)
+
+
+def post_add(request):
+    if request.method == 'POST':
+        return HttpResponse('POST request')
+    elif request.method == 'GET':
+        context = {
+
+        }
+        return render(request, 'blog/post_form.html', context)

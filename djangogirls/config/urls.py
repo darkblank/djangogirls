@@ -16,12 +16,13 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
-from blog.views import post_list, post_detail
+from blog.views import post_list, post_detail, post_add
 
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
     url(r'^$', post_list),
     # 숫자 1개 이상을 검색하게 하는 정규표현식
     # 정규표현식 그룹화해서 이름을 주게 되면 뒤의 함수에 인자로 그룹의 이름을 전달한다
-    url(r'^post/detail/(?P<pk>\d+)/', post_detail, name='post_detail')
+    url(r'^post/detail/(?P<pk>\d+)/', post_detail, name='post_detail'),
+    url(r'^post/add/', post_add, name='post_add'),
 ]
