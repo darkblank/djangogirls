@@ -1,8 +1,10 @@
 from django.conf import settings
 from django.db import models
 
-
 # Create your models here.
+from django.utils import timezone
+
+
 class Post(models.Model):
     author = models.ForeignKey(settings.AUTH_USER_MODEL)
     title = models.CharField(max_length=100)
@@ -12,3 +14,12 @@ class Post(models.Model):
 
     def __str__(self):
         return self.title
+
+    def publish(self):
+        self.published_date = timezone.now()
+        # 데이터 베이스에 데이터 업데이트
+        self.save()
+
+    def hide(self):
+        self.published_date = None
+        self.save()
