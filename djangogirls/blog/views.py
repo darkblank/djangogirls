@@ -34,7 +34,7 @@ def post_add(request):
         content = request.POST['content']
         author = User.objects.get(username='darkblank')
 
-        post = Post(
+        post = Post.objects.create(
             title=title,
             content=content,
             author=author,
