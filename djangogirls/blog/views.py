@@ -1,6 +1,6 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from blog.models import Post
 
 User = get_user_model()
@@ -40,7 +40,7 @@ def post_add(request):
             author=author,
         )
         post.publish()
-        return HttpResponse(f'{post.title}, {post.content}')
+        return redirect('/')
     else:
         context = {
 
