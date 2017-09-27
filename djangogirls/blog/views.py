@@ -40,7 +40,11 @@ def post_add(request):
             author=author,
         )
         post_pk = post.pk
-        post.publish()
+
+        if request.POST['publish'] == 'publish':
+            post.publish()
+        elif request.POST['publish'] == 'hide':
+            post.hide()
         return redirect('post_detail', pk=post_pk)
     else:
         context = {
