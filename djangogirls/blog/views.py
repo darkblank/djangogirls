@@ -1,10 +1,9 @@
 from django.contrib.auth import get_user_model
 from django.http import HttpResponse
 from django.shortcuts import render
+from blog.models import Post
 
 User = get_user_model()
-
-from blog.models import Post
 
 
 def post_list(request):
@@ -29,7 +28,6 @@ def post_detail(request, pk):
 
 
 def post_add(request):
-    # 강사님 git 코멘트 확인
     # 아래의 get은 dictionary 메서드
     if request.method == 'POST' and request.POST.get('title') and request.POST.get('content'):
         title = request.POST['title']
