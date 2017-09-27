@@ -39,8 +39,9 @@ def post_add(request):
             content=content,
             author=author,
         )
+        post_pk = post.pk
         post.publish()
-        return redirect('/')
+        return redirect('post_detail', pk=post_pk)
     else:
         context = {
 
