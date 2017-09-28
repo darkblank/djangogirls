@@ -50,3 +50,18 @@ def post_add(request):
 
         }
         return render(request, 'blog/post_form.html', context)
+
+
+def post_delete(request, pk):
+    """
+    pk에 해당하는 Post객체를 DB에서 삭제 (QuerySet.delete() 또는 Model.delete() 메서드 사용)
+    :param request:
+    :param pk: Post의 pk
+    :return: redirect('post_list')
+    """
+    if request.method == 'POST':
+        post = Post.objects.get(pk=pk)
+        post.delete()
+
+        return redirect('post_list')
+    return HttpResponse('Permission denied', status=403)

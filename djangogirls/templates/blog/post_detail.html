@@ -10,4 +10,9 @@
             <p class="right-text">{{ post.author.username }} | <strong>Author</strong></p>
         </div>
     </div>
+
+    <form action="{% url 'post_delete' pk=post.pk %}" method="post">
+        {% csrf_token %}
+        <button class="btn btn-danger">글 삭제</button>
+    </form>
 {% endblock %}
