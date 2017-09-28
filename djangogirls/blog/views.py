@@ -33,7 +33,7 @@ def post_add(request):
         title = request.POST['title']
         content = request.POST['content']
         author = User.objects.get(username='darkblank')
-
+        is_publish = bool(request.POST.get('publish'))
         post = Post.objects.create(
             title=title,
             content=content,
@@ -41,8 +41,9 @@ def post_add(request):
         )
         post_pk = post.pk
 
-        if request.POST.get('publish') == 'on':
+        if is_publish is True:
             post.publish()
+
         return redirect('post_detail', pk=post_pk)
     else:
         context = {
