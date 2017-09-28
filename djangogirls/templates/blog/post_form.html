@@ -14,15 +14,15 @@
 		{% csrf_token %}
 		<div class="form-group">
 			<label for="input-title">제목</label>
-			<input name="title" id="input-title" type="text" class="form-control">
+			<input name="title" id="input-title" type="text" class="form-control" value="{{ title }}">
 		</div>
 		<div class="form-group">
 			<label for="input-content">내용</label>
-			<textarea name="content" id="input-content" cols="30" rows="10" class="form-control"></textarea>
+			<textarea name="content" id="input-content" cols="30" rows="10" class="form-control">{{ content }}</textarea>
 		</div>
         <div class="checkbox">
             <label>
-            <input type="checkbox" name="publish" value="on">
+            <input type="checkbox" name="is_publish" value="on">
             publish
             </label>
         </div>
