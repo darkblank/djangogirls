@@ -1,4 +1,5 @@
 from django.contrib.auth import get_user_model
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 from blog.models import Post
@@ -7,7 +8,15 @@ User = get_user_model()
 
 
 def post_list(request):
-    posts = Post.objects.filter(published_date__isnull=False)
+    posts_filter = Post.objects.filter(published_date__isnull=False)
+    paginator = Paginator(posts_filter, 3)
+    page = request.GET.get('page')
+    try:
+        posts = paginator.page(page)
+    except PageNotAnInteger:
+        posts = paginator.page(1)
+    except EmptyPage:
+        posts = paginator.page(paginator.num_pages)
     context = {
         # posts key의 value는 QuerySet
         'posts': posts,
